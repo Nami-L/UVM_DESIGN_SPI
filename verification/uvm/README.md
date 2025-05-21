@@ -1,6 +1,4 @@
-# SPI_UVM
-#Creando ambiente de verificación UVM para protocolo SPI
-# SPI IP UVM Verification
+# SPI_IP UVM Verification
 
 ## Setup
 
