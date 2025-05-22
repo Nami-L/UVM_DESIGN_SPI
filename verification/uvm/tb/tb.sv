@@ -17,23 +17,23 @@ initial begin
     
 end
 //INSTANCIAR LA INTERFAZ
-spi_uvc_if spi_if(clk_i, rst_i);
+spi_uvc_if spi_vif(clk_i, rst_i);
 
 
 spi_ip dut(
-     .clk_i(spi_if.clk_i),  //Reloj de entrada
-     .reset_i(spi_if.reset_i),  // reset Asincrono
-     .din_i(spi_if.din_i),  //Datos de Entrada 8 bits
-     .dvsr_i(spi_if.dvsr_i),  //Determinara el ciclo de sclk_o. 
-     .start_i(spi_if.start_i),  //bandera de iniciar
-     .cpol_i(spi_if.cpol_i),  //Polaridad del reloj
-     .cpha_i(spi_if.cpha_i),  //Fase del reloj. (Cphol y Cpha me definen el modo de slck)
-     .dout_o(spi_if.dout_o),  //
-     .spi_done_tick_o(spi_if.spi_done_tick_o),  //Bandera de fin
-     .ready_o(spi_if.ready_o),  //Bandera Para transmitir
-     .sclk_o(spi_if.sclk_o),  //Reloj para la transmision de datos
-     .miso_i(spi_if.miso_i),  //
-     .mosi_o(spi_if.mosi_o)  //Salida de datos.
+     .clk_i(spi_vif.clk_i),  //Reloj de entrada
+     .reset_i(spi_vif.reset_i),  // reset Asincrono
+     .din_i(spi_vif.din_i),  //Datos de Entrada 8 bits
+     .dvsr_i('d50),  //Determinara el ciclo de sclk_o. 
+     .start_i(spi_vif.start_i),  //bandera de iniciar
+     .cpol_i(1'b0),  //Polaridad del reloj
+     .cpha_i(1'b0),  //Fase del reloj. (Cphol y Cpha me definen el modo de slck)
+     .dout_o(spi_vif.dout_o),  //
+     .spi_done_tick_o(spi_vif.spi_done_tick_o),  //Bandera de fing
+     .ready_o(spi_vif.ready_o),  //Bandera Para transmitir
+     .sclk_o(spi_vif.sclk_o),  //Reloj para la transmision de datos
+     .miso_i(spi_vif.miso_i),  //
+     .mosi_o(spi_vif.mosi_o)  //Salida de datos.
 
 
 );
@@ -41,7 +41,9 @@ spi_ip dut(
 
  initial begin
     $timeformat(-9, 0, " ns", 10);
-    //uvm_config_db#(virtual spi_uvc_if)::set(null, "uvm_test_top.m_env.m_spi_agent", "vif", spi_vif);
+    //Está estableciendo (o insertando) una interfaz virtual (spi_vif) de tipo virtual spi_uvc_if en la base de datos de configuración 
+    //(uvm_config_db) para que esté disponible en el componente ubicado en uvm_test_top.m_env.m_spi_agent, donde se buscará bajo el nombre vif."
+    uvm_config_db#(virtual spi_uvc_if)::set(null, "uvm_test_top.m_env.m_spi_agent", "vif", spi_vif);
     run_test();
   end
 

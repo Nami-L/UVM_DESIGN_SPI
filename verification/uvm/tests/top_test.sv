@@ -5,7 +5,7 @@ class top_test extends uvm_test;
 
   `uvm_component_utils(top_test)
 
-  //test_env m_env;
+  top_env m_env;
 
   //COLOCAR LAS FASES Y EL CONSTRUCTOR A UTILIZAR
 
@@ -24,7 +24,7 @@ endfunction:new
 
 function void top_test::build_phase(uvm_phase phase);
 //EN ESTA PARTE DE INSTANCIA EL ENVIRONMENT CON EL TOP, DE ACUERDO A LA JERARQUIA
-//m_test= top_env::type_id:.create("m_env",this);
+m_env= top_env::type_id::create("m_env",this);
 endfunction: build_phase
 
 function void top_test::end_of_elaboration_phase(uvm_phase phase);
