@@ -10,6 +10,7 @@ package top_env_pkg;
 
 
 //FILES
+  `include "top_vsqr.sv"
 `include "top_env.sv"
 endpackage: top_env_pkg
 

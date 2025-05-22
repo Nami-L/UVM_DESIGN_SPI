@@ -4,7 +4,7 @@ module tb();
   import uvm_pkg::*;
   import top_test_pkg::*;
 
-localparam CLK_PERIOD =10ns ;
+localparam time CLK_PERIOD =10ns ;
 logic clk_i=0;
 always #(CLK_PERIOD /2) clk_i= ~clk_i;
 
@@ -17,7 +17,7 @@ initial begin
     
 end
 //INSTANCIAR LA INTERFAZ
-spi_uvc_if spi_vif(clk_i, rst_i);
+spi_uvc_if spi_vif(clk_i, reset_i);
 
 
 spi_ip dut(

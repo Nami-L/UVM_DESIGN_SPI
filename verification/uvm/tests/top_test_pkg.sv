@@ -9,6 +9,8 @@ package top_test_pkg;
   import top_env_pkg::*;
 
   //FILE
+    `include "top_test_vseq.sv"
+
   `include "top_test.sv"
 
 endpackage: top_test_pkg

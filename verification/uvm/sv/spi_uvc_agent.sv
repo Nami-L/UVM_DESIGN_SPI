@@ -43,6 +43,8 @@ if(m_config.is_active==UVM_ACTIVE) begin
 //CONECTA EL SECUENCER Y EL DRIVER
 m_driver.seq_item_port.connect(m_sequencer.seq_item_export);
 end
+  m_monitor.analysis_port.connect(this.analysis_port);
+
 endfunction:connect_phase
 
 `endif // SPI_UVC_AGENT_SV

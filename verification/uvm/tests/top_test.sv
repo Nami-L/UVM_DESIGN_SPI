@@ -6,6 +6,7 @@ class top_test extends uvm_test;
   `uvm_component_utils(top_test)
 
   top_env m_env;
+  top_test_vseq vseq;
 
   //COLOCAR LAS FASES Y EL CONSTRUCTOR A UTILIZAR
 
@@ -36,8 +37,11 @@ endfunction: end_of_elaboration_phase
 task top_test::run_phase(uvm_phase phase);
 //PARA INICIARLIZAR EL RUN, SE COLOCAN OTROS DOS COMANDO POR DEFAULT
 phase.raise_objection(this);
-`uvm_info(get_name(),"Running test ....", UVM_MEDIUM);
-`uvm_info(get_name(),"Bienvenido Luis Namigtle....", UVM_MEDIUM);
+
+  vseq = top_test_vseq::type_id::create("vseq");
+  vseq.start(m_env.vsqr);
+//`uvm_info(get_name(),"Running test ....", UVM_MEDIUM);
+//`uvm_info(get_name(),"Bienvenido Luis Namigtle....", UVM_MEDIUM);
 
 phase.drop_objection(this);
 

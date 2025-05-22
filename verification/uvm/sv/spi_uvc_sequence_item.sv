@@ -7,7 +7,7 @@ class spi_uvc_sequence_item extends uvm_sequence_item;
 
   //DECLARAR LAS TRANSACIONES
 
-  rand byte m_data_in;
+  rand byte m_data;
   rand spi_uvc_cmd_e m_cmd;
 //LECTURA
 byte m_data_mosi;
@@ -30,7 +30,7 @@ function void spi_uvc_sequence_item::do_copy(uvm_object rhs);
 spi_uvc_sequence_item rhs_;
   if (!$cast(rhs_, rhs)) `uvm_fatal(get_type_name(), "Cast of rhs object failed")
   super.do_copy(rhs);
-m_data_in = rhs_.m_data_in;
+m_data = rhs_.m_data;
 m_cmd = rhs_.m_cmd;
 m_data_mosi= rhs_.m_data_miso;
 m_data_miso= rhs_.m_data_mosi;
@@ -60,7 +60,7 @@ function string spi_uvc_sequence_item::convert2string();
   s = super.convert2string();
   cmd_str = (m_cmd == SPI_UVC_WRITE) ? "SPI_UVC_WRITE" : "SPI_UVC_READ";
   $sformat(s, {s, "\n", "TRANSACTION INFORMATION (SPI UVC):"});
-  $sformat(s, {s, "\n", "m_cmd = %10s, m_data = %4d"}, cmd_str, m_data_in);
+  $sformat(s, {s, "\n", "m_cmd = %10s, m_data = %4d"}, cmd_str, m_data);
   $sformat(s, {s, "\n", "m_data_mosi = %5d, m_data_miso = %5d\n"}, m_data_mosi, m_data_miso);
   return s;
 endfunction : convert2string

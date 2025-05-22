@@ -18,6 +18,13 @@ interface spi_uvc_if(
     logic miso_i;  //
     logic mosi_o; //Salida de datos.
 
+    initial begin
+        din_i= 'd0;
+        start_i ='d0;
+        miso_i  = 'd0;
+
+    end
+
 clocking cb_drv @(posedge clk_i);
 default output #5ns;
     output din_i;  //Datos de Entrada 8 bits
